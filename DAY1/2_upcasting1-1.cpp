@@ -32,7 +32,16 @@ int main()
 	std::cout << pa << std::endl; // ok 
 	std::cout << p  << std::endl; // ok. 위와 동일.
 								  
-	p->color = 0; // 하지만 이렇게 사용하면 잘못된 코드"undefined"
+//	p->color = 0; // 하지만 이렇게 사용하면 잘못된 코드"undefined"
+
+
+	// dynamic_cast : 실행시간 캐스팅
+	//				  실행시간에 실제 객체를 조사후 맞는 경우만 허용
+	//				  "조사"해야 하므로 오버헤드 있음
+
+	Dog* p1 = dynamic_cast<Dog*>(pa);
+
+	std::cout << p1 << std::endl; // 0
 }
 
 
