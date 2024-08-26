@@ -32,23 +32,24 @@ public:
 
 		// 그런데, C++에서는 복사 생성자를 사용하면 됩니다.
 		return new Shape(*this);
-
-
 	}
 };
-
-
 
 
 class Rect : public Shape
 {
 public:
 	void draw() { std::cout << "draw Rect\n"; }
+
+	virtual Shape* clone() { return new Rect(*this); }
 };
+
 class Circle : public Shape
 {
 public:
 	void draw() { std::cout << "draw Circle\n"; }
+
+	virtual Shape* clone() { return new Circle(*this); }
 };
 
 int main()
@@ -74,21 +75,14 @@ int main()
 			int k;
 			std::cin >> k;
 
-			// k번째 도형의 복제본을 만들어서 v에 추가합니다.
-			// 어떻게 구현해야 할까요 ?
-			// k번째 도형이 뭘까요 ?
+			// k 번째 도형의 종류를 알필요 없다.
+			// => "Tell, Don't ask" 규칙
+			v.push_back(v[k]->clone()); // 다형성!!!
+							// 새로운 도형 클래스가 추가 되어도
+							// 이 코드는 수정될 필요 없다.
+							// 단, 새로운 도형 클래스설계자는
+							// clone() 을 제공해야 한다.
 
-			// 방법 #1. 객체 종류 조사!!
-			// => 새로운 도형 추가시 "제어문이 추가" 된다.
-			// => OCP 를 만족할수 없는 안좋은 디자인
-			if (dynamic_cast<Rect*>(v[k]) != nullptr)
-			{
-				// Rect 를 새로 만들어서 v[k] 내용으로 복사하고
-				// v에 추가
-			}
-			else if (dynamic_cast<Circle*>(v[k]) != nullptr)
-			{
-			}
 		}
 	}
 }
