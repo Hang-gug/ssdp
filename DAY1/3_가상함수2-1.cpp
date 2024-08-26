@@ -29,4 +29,5 @@ int main()
 	delete static_cast<Derived*>(p);
 }
 
-// 구글에서 "C++ core guideline" 검색
+// 구글에서 "C++ core guideline" 검색후
+// => 1번째 링크 선택
