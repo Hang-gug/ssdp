@@ -1,9 +1,14 @@
 ﻿#include <iostream>
 
+// 핵심 : 상속을 사용할때 
+//		  모든 기반 클래스의 소멸자는 반드시 "virtual" 로 해야 합니다.
+//		흔히 "virtual destructor" 라 불리는 문법
+
 class Base
 {
 public:
-	~Base() {}
+//	~Base() {}
+	virtual ~Base() {}
 };
 class Derived : public Base
 {
