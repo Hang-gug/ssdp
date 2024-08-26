@@ -33,12 +33,16 @@ int main()
 		else if (cmd == 9)
 		{
 			for (auto s : v)
-				s->draw();
+				s->draw();	// error.
+							// v 는 "Shape*" 를 보관하는 vector이므로
+							// s 의 타입은 "Shape*" 입니다.
+							// 그런데, Shape 에는 draw 가 없습니다.
 		}
 	}
 }
 // 위 코드는 어느 부분에서 왜 에러일까요 ??
 // 어떻게 해결해야 할까요 ??
+// => 2-1, 2-2 예제 참고
 
 
 
