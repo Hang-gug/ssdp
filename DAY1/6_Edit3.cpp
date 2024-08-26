@@ -50,9 +50,27 @@ public:
 	}
 };
 
+// 이제 값의 유효성을 확인하는 다양한 정책을 가진 "Validator" 를 제공합니다.
+
+class LimitDigitValidator : public IValidator
+{
+	int limit;
+public:
+	LimitDigitValidator(int v = 9999) : limit(9999) {}
+
+	bool validate(const std::string& s, char c) override
+	{
+		return isdigit(c) && (limit == 9999 || s.size() < limit);
+	}
+};
+
 int main()
 {
 	Edit e;
+
+	LimitDigitValidator v(5);
+	e.set_validator(&v);	// edit 에 값의 유효성정책을 담은 객체 전달
+
 	while (1)
 	{
 		std::cout << e.get_data() << std::endl;
