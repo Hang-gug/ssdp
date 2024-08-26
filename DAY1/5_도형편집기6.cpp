@@ -13,8 +13,21 @@ public:
 
 	void set_color(int c) { color = c; }
 
+	// 공통성과 가변성의 분리
+	// => 변하지 않은 공통의 특징은 기반 클래스에서 제공한다.
+	// => 변하지 않은 코드 내부에 숨은 변해야 하는 코드를 찾는다.
+	// => 변하는 것을 가상함수로 분리한다.
 
-	virtual void draw() = 0;
+	virtual void draw()
+	{
+		std::cout << "lock mutex\n";
+
+		std::cout << "draw Rect\n";
+
+		std::cout << "unlock mutex\n";
+	}
+
+
 
 
 	virtual Shape* clone()
@@ -32,10 +45,20 @@ public:
 class Rect : public Shape
 {
 public:
-	void draw() { std::cout << "draw Rect\n"; }
+	void draw() 
+	{ 
+		std::cout << "lock mutex\n";
+		
+		std::cout << "draw Rect\n"; 
+
+		std::cout << "unlock mutex\n";
+	}
+
 
 	virtual Shape* clone() { return new Rect(*this); }
 };
+
+
 
 class Circle : public Shape
 {
