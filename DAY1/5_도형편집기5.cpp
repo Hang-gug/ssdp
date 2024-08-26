@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 
+class NotImplemented {};
 
 class Shape
 {
@@ -8,18 +9,26 @@ class Shape
 public:
 	virtual ~Shape() {}
 
-	virtual void draw() { std::cout << "draw Shape\n"; }
-
-
 	void set_color(int c) { color = c; }
+
+
+	// 가상함수 : 파생 클래스가 override 하지 않으면 기본 구현 제공하겠다는 의도
+	// 순수가상함수 : 파생클래스 제작자에게 반드시 구현을 제공하라고 지시하는 것
+	virtual void draw() = 0;
+
+	// 아래 함수도
+	// 1. "= 0" 도 좋고
+	// 2. "기본 구현에서 예외발생" 하는 디자인도 Python, C# 등에서 널리 사용
+	virtual Shape* clone()
+	{
+		throw NotImplemented();
+	}
 
 	virtual int get_area() { return 0; }
 
-	virtual Shape* clone()
-	{
-		return new Shape(*this);
-	}
 };
+
+
 
 
 class Rect : public Shape
