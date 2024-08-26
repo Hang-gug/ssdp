@@ -49,6 +49,8 @@ int main()
 	//          캐스팅해야 합니다.
 
 	static_cast<Dog*>(p3)->color = 10; // ok. 
+		// => 단 이경우는 p3 가 Dog 를 가리킨다는 확신이 있어야 합니다.
+		// => Dog 객체가 아닌 경우는 "undefined, 미정의 동작 발생"
 
 }
 
