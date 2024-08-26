@@ -5,6 +5,8 @@
 //     의미를 생각해 보세요
 
 //     "Replace Conditional With Polymorphism"
+//      제어문(if, switch) 를 다형성(가상함수)로 변경해라
+//		2-1.cpp 를 2-2.cpp 로 변경해라. 
 
 
 
@@ -20,6 +22,19 @@ public:
 	void set_color(int c) { color = c; }
 
 	virtual int get_area() { return 0; }
+
+	// 자신의 복사본을 만드는 가상함수는 아주 유용하게 활용됩니다.
+	virtual Shape* clone()
+	{
+//		Shape* s = new Shape;   // 새로운 도형을 만들어서
+//		s->color = this->color; // 나와 동일하게 설정해서
+//		return s;				// 반환 합니다.
+
+		// 그런데, C++에서는 복사 생성자를 사용하면 됩니다.
+		return new Shape(*this);
+
+
+	}
 };
 
 
