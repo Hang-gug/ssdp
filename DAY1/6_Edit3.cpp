@@ -36,9 +36,9 @@ public:
 		{
 			char c = _getch();
 
-			if (c == 13) break; 
+			if (c == 13 && (val == nullptr || val->is_complete(data))  ) break;
 
-			if ( val->validate(data, c) )	// 값의 유효성 여부를
+			if ( val == nullptr || val->validate(data, c) )	// 값의 유효성 여부를
 											// 다른 클래스에 위임
 			{
 				data.push_back(c);
