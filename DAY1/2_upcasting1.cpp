@@ -31,12 +31,24 @@ int main()
 	// => 아래 코드를 생각해 보세요
 	// if (사용자 입력 == 1) p3 = &a; 
 
+
 	// 핵심 #3. static type check
+	// => Animal* 인 p3로는 Animal 자체의 멤버만 접근 가능합니다.
+	// => Dog 고유의 멤버를 접근할수 없습니다.
+
+	// static type check : 컴파일 할때 타입을 확인하는 것
+	// dynamic type check : 실행할때 타입을 확인하는 것
+	//						(파이썬)
 
 	p3->age = 0; // ok
-	p3->color = 0; // ??
+//	p3->color = 0; // C++, C#, java : 컴파일 에러
+					// Python : 컴파일은 ok. 실행시에 color가 없으면
+					//			예외 발생.
 
+	// 핵심 #4. p3로 Dog 고유의 멤버에 접근하려면
+	//          캐스팅해야 합니다.
 
+	static_cast<Dog*>(p3)->color = 10; // ok. 
 
 }
 
