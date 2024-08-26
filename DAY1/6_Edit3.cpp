@@ -56,20 +56,26 @@ class LimitDigitValidator : public IValidator
 {
 	int limit;
 public:
-	LimitDigitValidator(int v = 9999) : limit(9999) {}
+	LimitDigitValidator(int v = 9999) : limit(v) {}
 
 	bool validate(const std::string& s, char c) override
 	{
 		return isdigit(c) && (limit == 9999 || s.size() < limit);
 	}
+
+	bool is_complete(const std::string& s) override
+	{
+		return s.size() == limit;
+	}
 };
+
 
 int main()
 {
 	Edit e;
 
 	LimitDigitValidator v(5);
-	e.set_validator(&v);	// edit 에 값의 유효성정책을 담은 객체 전달
+	e.set_validator(&v);	// edit 에 값의 유효성 정책을 담은 객체 전달
 
 	while (1)
 	{
