@@ -10,9 +10,14 @@ class Rect
 public:
 	void draw() { std::cout << "draw Rect\n"; }
 };
+class Circle
+{
+public:
+	void draw() { std::cout << "draw Circle\n"; }
+};
 
 int main()
 {
-
+	std::vector<Rect*> v; // Rect 객체만 보관 가능
 }
 
