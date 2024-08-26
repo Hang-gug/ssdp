@@ -19,12 +19,20 @@ public:
 	// 아래 함수도
 	// 1. "= 0" 도 좋고
 	// 2. "기본 구현에서 예외발생" 하는 디자인도 Python, C# 등에서 널리 사용
+	// => override 하지 않았는데 호출하면 "예외발생"
+	// => override 하지 않았는데 호출도 하지 않으면 - 아무 문제 없다.
+	// => override 하고 호출하면 - 아무 문제 없다.
+
 	virtual Shape* clone()
 	{
 		throw NotImplemented();
 	}
 
-	virtual int get_area() { return 0; }
+	// 1. "=0" 으로 해도 좋고 (엄격한 디자인)
+	// 2. 기본 구현이 예외를 던질수도 있고
+	// 3. 기본 구현이 실패로 약속된 값을 전달하게(C 스타일) 할수도 있다.
+	// => override 하지않으면 실패로 약속된 값(-1) 반환
+	virtual int get_area() { return -1; }
 
 };
 
