@@ -15,9 +15,22 @@ public:
 // 3. Student 생성자 만들어 보세요
 // 4. main 에서 Student 객체 생성해 보세요
 
+class Student : public Person
+{
+	int id;
+public:
+	// 아래 코드는 에러
+//	Student(int id) : id(id) {} // Student(int id) : Person(), id(id)
+
+	Student(const std::string& name, int age, int id)
+		: Person(name, age), id(id) {}
+};
 
 int main()
 {
+	Student s("kim", 30, 15);
+
+
 	Person p2("kim", 30); // ok. 반드시 초기화해야만 객체 생성 가능
 
 
