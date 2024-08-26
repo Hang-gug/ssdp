@@ -29,6 +29,7 @@ public:
 
 int main()
 {
-	std::vector<Rect*> v; // Rect 객체만 보관 가능
+//	std::vector<Rect*> v; // Rect 객체만 보관 가능
+	std::vector<Shape*> v; // ok.. 핵심. 모든 종류의 도형객체를 보관 가능
 }
 
