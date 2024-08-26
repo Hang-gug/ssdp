@@ -43,7 +43,8 @@ int main()
 	// dynamic_cast : 실행시간 캐스팅
 	//				  실행시간에 실제 객체를 조사후 맞는 경우만 허용
 	//				  "조사"해야 하므로 오버헤드 있음
-
+	//					단, dynamic_cast 를 사용하려면
+	//					"반드시 가상함수가 한개이상" 있는 타입만 가능합니다.
 	Dog* p1 = dynamic_cast<Dog*>(pa);
 
 	std::cout << p1 << std::endl; // pa가 Dog 를 가리키지 않았다면 0 반환
