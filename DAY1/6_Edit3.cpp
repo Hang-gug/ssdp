@@ -10,6 +10,14 @@
 // "변해야 한다" => 교체 가능해야 한다 => 약한 결합이어야 합니다.
 // 인터페이스 필요
 
+struct IValidator
+{
+	virtual bool validate(const std::string& data, char c) = 0;
+	virtual bool is_complete(const std::string& data) { return true; }
+	virtual ~IValidator() {}
+};
+
+// 주민 등록 번호 : 931   1      확인
 
 
 class Edit
