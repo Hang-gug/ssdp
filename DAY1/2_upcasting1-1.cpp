@@ -6,7 +6,11 @@ class Animal
 {
 public:
 	int age;
+
+	virtual ~Animal() {} // 가상 소멸자 => 다음 시간에 자세히..!
 };
+
+
 class Dog : public Animal
 {
 public:
