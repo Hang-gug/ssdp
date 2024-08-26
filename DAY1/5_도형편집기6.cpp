@@ -18,11 +18,13 @@ public:
 	// => 변하지 않은 코드 내부에 숨은 변해야 하는 코드를 찾는다.
 	// => 변하는 것을 가상함수로 분리한다.
 
-	virtual void draw()
+	virtual void draw_imp() = 0;
+
+	void draw()
 	{
 		std::cout << "lock mutex\n";
 
-		std::cout << "draw Rect\n";
+		draw_imp();
 
 		std::cout << "unlock mutex\n";
 	}
@@ -45,14 +47,7 @@ public:
 class Rect : public Shape
 {
 public:
-	void draw() 
-	{ 
-		std::cout << "lock mutex\n";
-		
-		std::cout << "draw Rect\n"; 
-
-		std::cout << "unlock mutex\n";
-	}
+	void draw_imp() { std::cout << "draw Rect\n"; }
 
 
 	virtual Shape* clone() { return new Rect(*this); }
@@ -63,7 +58,7 @@ public:
 class Circle : public Shape
 {
 public:
-	void draw() { std::cout << "draw Circle\n"; }
+	void draw_imp() { std::cout << "draw Circle\n"; }
 
 	virtual Shape* clone() { return new Circle(*this); }
 };
