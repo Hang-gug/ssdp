@@ -1,11 +1,18 @@
 #include <iostream>
 #include <vector>
 
+// #1. 모든 파생 클래스의 공통의 특징은 
+//     "반드시 기반 클래스에도 있어야 합니다."
+//     (문법이 아닌 디자인 규칙)
+//     그래야 Shape* 로 draw() 호출 가능합니다.
+
 class Shape
 {
 	int color;
 public:
 	virtual ~Shape() {}
+
+	void draw() { std::cout << "draw Shape\n"; }
 };
 
 class Rect : public Shape
