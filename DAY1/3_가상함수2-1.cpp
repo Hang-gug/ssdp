@@ -27,6 +27,6 @@ int main()
 	// 아래 처럼 캐스팅해서 delete 하라는 것!!
 	// => 소멸자가 가상이 아니므로 사용자가 주의해서 사용하라는 의도!
 	delete static_cast<Derived*>(p);
-
-
 }
+
+// 구글에서 "C++ core guideline" 검색
