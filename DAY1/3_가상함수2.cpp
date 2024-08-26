@@ -15,7 +15,12 @@ int main()
 {
 //	Derived d; // ok. 아무 문제 없음. 
 
-	Derived* p = new Derived; // 생성자 호출
-	delete p;				  // 이순간 소멸자 호출.  아무 문제 없음. 
+//	Derived* p = new Derived; // 생성자 호출
+//	delete p;				  // 이순간 소멸자 호출.  아무 문제 없음. 
 
+
+	// 아래 코드가 이 예제의 핵심 입니다.
+	// => 실행해서 결과 확인해 보세요
+	Base* p = new Derived;
+	delete p;				
 }	
