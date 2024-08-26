@@ -16,7 +16,20 @@ public:
 	virtual ~Shape() {}
 
 	virtual void draw() { std::cout << "draw Shape\n"; }
+
+	
+	// 아래 함수는 "virtual" 로 할까요 ? "non-virtual" 로 할까요 ?
+	// => 파생 클래스가 override 할 이유 없습니다. - non-virtual
+	void set_color(int c) { color = c; }
+
+	// 면적 구하는 함수
+	// => 모든 도형은 면적 구하는 방법이 다릅니다.
+	// => 파생 클래스가 override 하게 됩니다. - virtual 
+	virtual int get_area() { return 0; }
 };
+
+
+
 
 class Rect : public Shape
 {
