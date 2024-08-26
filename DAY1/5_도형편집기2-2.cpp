@@ -6,13 +6,16 @@
 //     (문법이 아닌 디자인 규칙)
 //     그래야 Shape* 로 draw() 호출 가능합니다.
 
+// #2. 기반 클래스 함수중 파생 클래스가 override 하는 것은
+//     반드시 "virtual" 로 만들어야 한다.
+
 class Shape
 {
 	int color;
 public:
 	virtual ~Shape() {}
 
-	void draw() { std::cout << "draw Shape\n"; }
+	virtual void draw() { std::cout << "draw Shape\n"; }
 };
 
 class Rect : public Shape
