@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
 
-class NotImplemented {};
+class NotImplemented 
+{
+};
 
 class Shape
 {
@@ -78,8 +80,15 @@ int main()
 			int k;
 			std::cin >> k;
 
+			try
+			{
 
-			v.push_back(v[k]->clone()); 
+				v.push_back(v[k]->clone());
+			}
+			catch (NotImplemented& e)
+			{
+				// clone()을 override 하지 않은  도형을 사용한 경우
+			}
 
 		}
 	}
