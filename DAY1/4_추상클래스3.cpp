@@ -10,7 +10,13 @@ public:
 	virtual void take() = 0;
 };
 
-
+// #2. 실제 카메라가 없어도, 사용하는 코드를 작성할수 있습니다.
+// => 규칙대로만 사용하면 됩니다.
+class People
+{
+public:
+	void use_camera(? c) { c->take(); }
+};
 
 
 
