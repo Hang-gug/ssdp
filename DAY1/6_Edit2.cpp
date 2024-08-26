@@ -39,9 +39,23 @@ public:
 	}
 };
 
+// 위 Edit 의 설계 의도는
+// Validation 을 변경하고 싶다면 Edit 의 파생 클래스를 만들어서
+// 약속된 가상함수를 override 하라는 것
+
+class NumEdit : public Edit
+{
+public:
+	bool validate(char c) override
+	{
+		return isdigit(c);
+	}
+};
+
 int main()
 {
-	Edit e;
+//	Edit e;
+	NumEdit e;
 	while (1)
 	{
 		std::cout << e.get_data() << std::endl;
