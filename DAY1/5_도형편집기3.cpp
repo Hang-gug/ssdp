@@ -55,6 +55,16 @@ int main()
 			// k번째 도형의 복제본을 만들어서 v에 추가합니다.
 			// 어떻게 구현해야 할까요 ?
 			// k번째 도형이 뭘까요 ?
+
+			// 방법 #1. 객체 종류 조사!!
+			if (dynamic_cast<Rect*>(v[k]) != nullptr)
+			{
+				// Rect 를 새로 만들어서 v[k] 내용으로 복사하고
+				// v에 추가
+			}
+			else if (dynamic_cast<Circle*>(v[k]) != nullptr)
+			{
+			}
 		}
 	}
 }
