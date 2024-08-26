@@ -22,7 +22,8 @@ int main()
 	Animal a;
 	Dog d;
 
-	Animal* pa = &a;
+//	Animal* pa = &a;
+	Animal* pa = &d;
 
 	// static_cast : 컴파일 시간 캐스팅
 	//				 컴파일러에게 허용해달라고 요청하는것
@@ -45,7 +46,11 @@ int main()
 
 	Dog* p1 = dynamic_cast<Dog*>(pa);
 
-	std::cout << p1 << std::endl; // 0
+	std::cout << p1 << std::endl; // pa가 Dog 를 가리키지 않았다면 0 반환
+
+	// dynamic_cast 로 조사할수 있지만
+	// => dynamic_cast 는 되도록 사용하지 않은것인 좋은 디자인 입니다.
+	// => 오후에 자세히 설명
 }
 
 
