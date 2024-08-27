@@ -140,7 +140,7 @@ int main()
 	MenuItem* m = new MenuItem("WHITE", 14, &f1);
 	m->add_handler(&f3);
 
-	m->add_handler([]() { std::cout << "lambda"; _getch(); });
+	m->add_handler( []() { std::cout << "lambda"; _getch(); } );
 
 	pm1->add(m);
 
