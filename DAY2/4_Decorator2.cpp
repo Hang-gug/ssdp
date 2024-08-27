@@ -33,13 +33,16 @@ public:
 
 
 
-class Border : public PhotoSticker
+class Border 
 {
+	PhotoSticker* original;
 public:
+	Border(PhotoSticker* ps) : original(ps) {}
+
 	void draw()
 	{
 		std::cout << "========\n";
-		PhotoSticker::draw();
+		original->draw();
 		std::cout << "========\n";
 	}
 };
