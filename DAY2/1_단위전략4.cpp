@@ -88,4 +88,4 @@ int main()
 // IDioms : 각 언어의 특징을 고려한 디자인 기법
 //			(C++ IDioms, Java Idioms 등... )
 //			구글에서 "C++ Idioms" 검색후 1번째 링크
-// => policy base design, CRTP, 
+// => policy base design, CRTP, object generator
