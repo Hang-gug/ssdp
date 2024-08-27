@@ -46,10 +46,17 @@ class Folder : public Component
 public:
 	Folder(const std::string& name) : Component(name) {}
 
-	void add(Component* c) { ? }
+	void add(Component* c) { v.push_back(c); }
 
-	int get_size() override { ?}
+	int get_size() override 
+	{
+		int sz = 0;
 
+		for (auto f : v)
+			sz += f->get_size();
+
+		return sz;
+	}
 };
 
 
