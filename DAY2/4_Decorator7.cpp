@@ -59,12 +59,16 @@ public:
 int main()
 {
 	FileStream fs("a.txt");
-	fs.write("hello");
+	fs.write("hello");	// 파일에 쓰기
 
 	EncryptDecorator ed(&fs);
-	ed.write("hello");	
-
+	ed.write("hello");	// 1. 암호화 기능 추가
+						// 2. fs.wirte(암호화된 데이타)
 
 	ZipDecorator zd(&ed);
-	zd.write("hello");
+	zd.write("hello");  // 1. 데이타 압축기능 추가
+					    // 2. ed.write(압축된 데이타)
 }
+
+// 구글에서 "C# Stream" 검색 해 보세요
+// "이미지 보기" 선택
