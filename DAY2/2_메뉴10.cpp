@@ -1,9 +1,9 @@
-// 2_메뉴9.cpp - 6번 복사해 보세요
 #include <iostream>
 #include <string>
 #include <vector>
 #include <conio.h> 
-
+#include <functional>	
+using namespace std::placeholders;
 
 class BaseMenu
 {
@@ -21,18 +21,9 @@ public:
 
 
 
-class MenuItem : public BaseMenu
-{
-	int id;
-public:
-	MenuItem(const std::string& title, int id) : BaseMenu(title), id(id) {}
 
-	void command()
-	{
-		std::cout << get_title() << " 메뉴 선택됨\n";
-		_getch();
-	}
-};
+
+
 
 class PopupMenu : public BaseMenu
 {
@@ -86,6 +77,33 @@ public:
 	}
 };
 
+
+class MenuItem : public BaseMenu
+{
+	int id;
+
+//	void(*handler)(); // 함수 포인터
+
+	using HANDLER = std::function<void()>;
+
+	std::vector< HANDLER >  v;
+
+public:
+	MenuItem(const std::string& title, int id, HANDLER h = nullptr ) 
+		: BaseMenu(title), id(id) 
+	{
+		if (h != nullptr)
+			v.push_back(h);
+	}
+
+	void add_handler(HANDLER h) { v.push_back(h); }
+
+	void command()
+	{
+		for (auto f : v)
+			f();	// f 는 std::function 이므로 () 로 호출.
+	}
+};
 
 
 int main()
