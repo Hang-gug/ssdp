@@ -38,7 +38,22 @@ public:
 
 		original->write(data);
 	}
+};
 
+
+class ZipDecorator : public Stream
+{
+	Stream* original;	
+public:
+	ZipDecorator(Stream* s) : original(s) {}
+
+
+	void write(const std::string& s) override
+	{
+		auto data = "[ " + s + " ] ¾ĞÃàµÊ";
+
+		original->write(data);
+	}
 };
 
 
