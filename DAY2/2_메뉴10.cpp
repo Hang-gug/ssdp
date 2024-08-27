@@ -119,7 +119,7 @@ void f2(int id)
 	_getch();
 }
 
-void f3() { std::cout << "f3\n"; }
+void f3() { std::cout << "f3\n"; _getch(); }
 
 
 
@@ -139,6 +139,8 @@ int main()
 	// 2개의 핸들러를 가진 메뉴 예제
 	MenuItem* m = new MenuItem("WHITE", 14, &f1);
 	m->add_handler(&f3);
+
+	m->add_handler([]() { std::cout << "lambda"; _getch(); });
 
 	pm1->add(m);
 
