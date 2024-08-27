@@ -11,7 +11,12 @@
 
 
 
-template<typename T, typename Alloc>
+
+// std::allocator : C++ 표준 메모리 할당기
+//					내부적으로 new/delete 사용.
+#include <memory>   // 이 헤더 필요
+
+template<typename T, typename Alloc = std::allocator<T> >
 class vector
 {
 	T* buff = nullptr;
