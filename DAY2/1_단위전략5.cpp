@@ -34,6 +34,20 @@ public:
 							// generic 생성자 라는 개념. 
 };
 
+// list 등에 보내려면 == 와 != 연산자도 있어야 합니다.(관례적으로 아래처럼하면됩니다.)
+// 그래야 완벽한 allocator
+template<typename T>
+bool operator ==(const debug_alloc<T>& a1, const debug_alloc<T>& a2)
+{
+	return true;
+}
+
+template<typename T>
+bool operator !=(const debug_alloc<T>& a1, const debug_alloc<T>& a2)
+{
+	return false;
+}
+
 
 int main()
 {
@@ -56,4 +70,14 @@ int main()
 					// 2. 그냥, 8개 계속 사용하고, size 변수만 6으로
 
 	std::cout << "-----------------" << std::endl;
+
+	v.push_back(0); // 메모리8, size 6 이므로 메모리 재할당 없이 삽입
+	v.push_back(0); // 메모리8, size 7 이므로 메모리 재할당 없이 삽입
+
+	std::cout << "-----------------" << std::endl;
+	v.push_back(0); // 메모리8, size 8 인 상태에서 넣게 되므로
+					// 메모리 재할당 됩니다.
+					// g++ 2배로, vs : 1.5 배로
+	std::cout << "-----------------" << std::endl;
+
 }
