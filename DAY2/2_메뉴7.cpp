@@ -76,9 +76,9 @@ public:
 			v[cmd - 1]->command();
 		}
 	}
+
+	BaseMenu* submenu(int idx) { return v[idx]; }
 };
-
-
 
 int main()
 {
