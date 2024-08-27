@@ -47,10 +47,17 @@ public:
 
 // TextView 를 도형편집기에서 사용할수 있게 바꾸는 도구를 만들자
 
-class Text : public TextView
+class Text : public TextView, public Shape
 {
 public:
+	Text(const std::string& s) : TextView(s) {}
+
+	void draw() override
+	{
+		? ;
+	}
 };
+
 
 int main()
 {
