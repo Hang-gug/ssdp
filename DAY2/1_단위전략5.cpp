@@ -16,16 +16,24 @@ public:
 	T* allocate(std::size_t sz)
 	{
 		void* p = malloc(sizeof(T) * sz);
-
 		printf("allocate %p, %zd cnt\n", p, sz);
 
 		return static_cast<T*>(p);
 	}
 	void deallocate(T* p, std::size_t sz)
 	{
+		printf("deallocate %p, %zd cnt\n", p, sz);
 		free(p);
 	}
 
+	// 위 2개 위에 아래 3개도 필요 합니다.
+	// => 관례적인 코드이므로 항상 복사해서 사용하면 됩니다.
+	using value_type = T;
+
+	debug_alloc() {}
+
+	template<typename U> debug_alloc(const debug_alloc<U>&) {}
+							// generic 생성자 라는 개념. 
 };
 
 
