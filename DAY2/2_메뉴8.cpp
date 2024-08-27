@@ -105,7 +105,14 @@ int main()
 	// 
 	root->submenu(0)->add(new MenuItem("RED", 11));  // ok
 
-
+	try
+	{
+		root->submenu(1)->add(new MenuItem("RED", 11)); // 컴파일 ok
+									// 하지만, 예외 발생
+	}
+	catch (...)
+	{
+	}
 
 	root->command();
 
