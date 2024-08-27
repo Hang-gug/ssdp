@@ -42,11 +42,11 @@ public:
 template<typename T> class MyAllocator 
 {
 public:
-	T* allocate(std::size_t sz) 
+	inline T* allocate(std::size_t sz) 
 	{
 		return static_cast<T*>(malloc(sizeof(T) * sz));
 	}
-	void deallocate(T* p, std::size_t sz)
+	inline void deallocate(T* p, std::size_t sz)
 	{
 		free(p);
 	}
@@ -54,8 +54,23 @@ public:
 
 int main()
 {
-	vector<int, MyAllocator<int> > v(4); 
+//	vector<int, MyAllocator<int> > v(4); 
+
+	vector<int > v(4);
 }
 
 
 
+
+// strategy vs policy base design
+
+// strategy : 일반적으로 정책 클래스를 "인터페이스"를 통해서 교체
+
+// policy base design : 정책클래스를 "템플릿 인자" 로 교체
+// 
+
+
+//						성능					유연성
+// strategy			  : 
+
+// policy base design : 
