@@ -136,6 +136,15 @@ int main()
 	pm1->add(new MenuItem("GREEN", 12, std::bind(&f2, 12) ));
 	pm1->add(new MenuItem("BLUE", 13,  std::bind(&f2, 13) ));
 
+	// 2개의 핸들러를 가진 메뉴 예제
+	MenuItem* m = new MenuItem("WHITE", 14, &f1);
+	m->add_handler(&f3);
+
+	pm1->add(m);
+
+
+
+
 	pm2->add(new MenuItem("HD", 21));
 	pm2->add(new MenuItem("FHD", 22));
 	pm2->add(new MenuItem("UHD", 23));
