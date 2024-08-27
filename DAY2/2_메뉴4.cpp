@@ -81,7 +81,7 @@ int main()
 	pm.add(&kimbab);	// 핵심!!! 현재는 error. 
 						// 어떻게 해야 할까요 ??
 						// => 해결은 다음 소스에서
-	pm.add(&m9);
+	pm.add(&m9);	// ok..!
 
 	pm.command(); 
 }
