@@ -115,5 +115,10 @@ int main()
 
 	delete root; // 이순간 PopupMenu 의 소멸자에서
 				 // 하위 메뉴 delete
+
+
+//	MenuItem m("aa", 11);	 // 이렇게 만들면
+							// 수명이 정해져 있습니다.
+							// 불편합니다.!!!
 }
 
