@@ -113,6 +113,7 @@ int main()
 	// 해결책 #1. 스마트 포인터 사용 - std::shared_ptr
 	// 해결책 #2. 최상위 메뉴만 제거
 
-	delete root;
+	delete root; // 이순간 PopupMenu 의 소멸자에서
+				 // 하위 메뉴 delete
 }
 
