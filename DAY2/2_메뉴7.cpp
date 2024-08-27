@@ -90,6 +90,12 @@ int main()
 	// #1. submenu 를 만들어 봅시다.
 	auto m = root->submenu(0);
 
+	// #2. 핵심. 아래 코드에 대해서 생각해 봅시다.
+	root->submenu(0)->add(new MenuItem("RED, 11")); // ?
+
+
+
+
 	root->command();
 
 }
