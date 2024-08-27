@@ -30,7 +30,6 @@ public:
 	virtual int get_size() = 0;
 };
 
-
 class File  : public Component
 {
 	int size;
@@ -38,14 +37,23 @@ public:
 	File(const std::string& name, int size)
 		: Component(name), size(size) {}
 
-	// get_size 구현해 보세요. 아래 Folder 완성해 보세요
-	// main 이 실행되게 해보세요. 
+	int get_size() override { return size; }
 };
 
-class Folder 
+class Folder : public Component
 {
+	std::vector<Component*> v; // "Composite" 패턴의 핵심
 public:
+	Folder(const std::string& name) : Component(name) {}
+
+	void add(Component* c) { ? }
+
+	int get_size() override { ?}
+
 };
+
+
+
 
 int main()
 {
