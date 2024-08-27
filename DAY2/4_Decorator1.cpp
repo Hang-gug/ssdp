@@ -23,6 +23,18 @@ public:
 	}
 };
 
+
+class Border : public PhotoSticker
+{
+public:
+	void draw()
+	{
+		std::cout << "========\n";	
+		PhotoSticker::draw();	
+		std::cout << "========\n";
+	}
+};
+
 int main()
 {
 	PhotoSticker ps;
@@ -32,6 +44,10 @@ int main()
 	Emoticon e;
 	e.take();
 	e.draw();
+
+	Border b; // 테두리를 그리기 위해
+	b.take(); // 다시 사진 촬영 필요
+	b.draw();
 }
 
 // 위코드에 대해서 생각해 봅시다.
@@ -41,3 +57,8 @@ int main()
 // 3. 이모티콘을 추가하기 위해 다시 사진을 촬영한것
 // 
 // 상속 : 객체가 아닌 클래스에 기능 추가
+
+// 위코드의 또 다른 문제점
+// => 이모티콘과 Border 를  동시에 추가하려면
+// => 다시 Emoticon 과 Border 를 다중상속한 파생 클래스 필요!!
+// => 복잡해 진다.
