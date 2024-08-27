@@ -52,9 +52,11 @@ class Text : public TextView, public Shape
 public:
 	Text(const std::string& s) : TextView(s) {}
 
+	// 아래 부분이 "show" 라는 함수 이름을 "draw" 라는 이름으로 변경
+	// 하는 코드. "어답터 패턴"의 핵심
 	void draw() override
 	{
-		? ;
+		TextView::show();
 	}
 };
 
@@ -62,8 +64,18 @@ public:
 int main()
 {
 	std::vector<Shape*> v;
+
+	Text tv("hello");
+	v.push_back(&tv);
+
+	v[0]->draw();
 }
 
+// Adapter 패턴
+// => 기존 클래스의 인터페이스를 시스템에 요구사항에 맞도록
+//    변경해주는 클래스를 만드는 패턴
+
+// => 인터페이스의 불일치를 해결하는 패턴
 
 
 
