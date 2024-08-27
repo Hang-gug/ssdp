@@ -30,36 +30,31 @@ public:
 	void draw() override
 	{
 		original->draw();
-	}
-		
+	}		
 };
 
-
-class Emoticon : public IDraw
+class Emoticon : public Decorator
 {
-
 public:
-	Emoticon(IDraw* ps) : original(ps) {}
+	Emoticon(IDraw* ps) : Decorator(ps) {}
 
 	void draw()
 	{
 		std::cout << "^^\n";
-		original->draw();
+		Decorator::draw();
 		std::cout << "^^\n";
 	}
 };
-
-
-class Border : public IDraw
+class Border : public Decorator
 {
 	IDraw* original;
 public:
-	Border(IDraw* ps) : original(ps) {}
+	Border(IDraw* ps) : Decorator(ps) {}
 
 	void draw()
 	{
 		std::cout << "========\n";
-		original->draw();
+		Decorator::draw();
 		std::cout << "========\n";
 	}
 };
