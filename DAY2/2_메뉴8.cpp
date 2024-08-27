@@ -113,8 +113,9 @@ int main()
 	catch (...)
 	{
 	}
-
 	root->command();
-
 }
 
+// root->submenu(0) 의 결과에 add 호출하고 싶다.
+// 메뉴7 : 캐스팅해서 사용해라  - safety 를 강조
+// 메뉴8 : 캐스팅 필요 없지만 잘못사용하면 예외 발생 - comportable 를 강조
