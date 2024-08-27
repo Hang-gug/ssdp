@@ -90,9 +90,15 @@ int main()
 	// #1. submenu 를 만들어 봅시다.
 	auto m = root->submenu(0);
 
-	// #2. 핵심. 아래 코드에 대해서 생각해 봅시다.
-	root->submenu(0)->add(new MenuItem("RED, 11")); // ?
 
+	// #2. 핵심. 아래 코드에 대해서 생각해 봅시다.
+//	root->submenu(0)->add(new MenuItem("RED", 11)); 
+				// error. submenu() 반환 타입은 BaseMenu* 인데
+				// BaseMenu 에는 "add가 없다"
+
+
+	// 해결책 #1. 캐스팅
+	static_cast<PopupMenu*>(root->submenu(0))->add(new MenuItem("RED", 11));
 
 
 
