@@ -43,7 +43,7 @@ public:
 	~PopupMenu()
 	{
 		for (auto m : v)
-			delete v;
+			delete m;
 	}
 
 
