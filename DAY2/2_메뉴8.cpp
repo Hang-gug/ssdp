@@ -3,6 +3,7 @@
 #include <vector>
 #include <conio.h> 
 
+class unsupported_operation {};
 
 class BaseMenu
 {
@@ -15,6 +16,19 @@ public:
 	std::string get_title() const { return title; }
 
 	virtual void command() = 0;
+
+	// 아래 2개 함수는 MenuItem 에서는 필요 없지만
+	// 사용하기 쉽게 하기 위해서 Base 에서도 제공해 봅시다.
+
+	virtual void add(BaseMenu*)
+	{
+		throw unsupported_operation();
+	}
+	
+	virtual BaseMenu* submenu(int idx) 
+	{
+		throw unsupported_operation();
+	}
 };
 
 
@@ -89,7 +103,7 @@ int main()
 
 
 	// 
-	root->submenu(0)->add(new MenuItem("RED", 11)); 
+	root->submenu(0)->add(new MenuItem("RED", 11));  // ok
 
 
 
