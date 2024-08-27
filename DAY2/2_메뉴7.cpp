@@ -101,6 +101,10 @@ int main()
 	static_cast<PopupMenu*>(root->submenu(0))->add(new MenuItem("RED", 11));
 
 
+	// 그런데, 코드가 복잡해 보인다.!!
+	// 파이썬 처럼 쉽게 할수 없을까 ? 캐스팅 없이
+	// => 다음 소스 참고..
+
 
 	root->command();
 
