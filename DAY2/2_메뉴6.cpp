@@ -87,7 +87,8 @@ int main()
 	PopupMenu* pm2 = new PopupMenu("해상도 변경");
 
 	root->add(pm1);
-	root->add(pm2);
+//	root->add(pm2);
+	pm1->add(pm2);
 
 	pm1->add(new MenuItem("RED",   11));
 	pm1->add(new MenuItem("GREEN", 12));
@@ -96,8 +97,10 @@ int main()
 	pm2->add(new MenuItem("HD",  21));
 	pm2->add(new MenuItem("FHD", 22));
 	pm2->add(new MenuItem("UHD", 23));
+	pm2->add(new MenuItem("8K", 24));
 
 	// 이제 시작하려면 ?
+	root->command();
 
 }
 
