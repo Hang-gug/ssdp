@@ -13,16 +13,24 @@ public:
 // 상속 : 클래스에 기능 추가
 // 포함 : 객체에 기능 추가
 
-class Emoticon : public PhotoSticker
+class Emoticon 
 {
+	PhotoSticker* original;  // 핵심 : 포인터 또는 참조 멤버
+							 // 의도 : 외부에 이미 생성된 객체를 가리키겠다는것
+							 //		  	
 public:
+	Emoticon(PhotoSticker* ps) : original(ps) {}
+
 	void draw()
 	{
 		std::cout << "^^\n";	
-		PhotoSticker::draw();	
+		original->draw();	
 		std::cout << "^^\n";
 	}
 };
+
+
+
 
 
 class Border : public PhotoSticker
@@ -42,5 +50,10 @@ int main()
 	ps.take();	
 	ps.draw();
 
+
+	Emoticon e(&ps); // e 는 이미 존재하는 객체인 ps에 기능을 추가하는 객체
+
+	ps.draw(); // 이렇게 하면 이모티콘없이 사진이 출력되고
+	e.draw();  // 이렇게 하면 이모티콘 기능이 추가되어서 출력
 }
 
