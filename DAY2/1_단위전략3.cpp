@@ -2,6 +2,17 @@
 // => 변하는 것을 다른 클래스로
 // => 메모리 할당 해지를 별도의 클래스로 만들어서 사용
 
+// 메모리 할당 정책의 인터페이스
+template<typename T>
+struct IAllocator
+{
+	virtual T* allocate(std::size_t sz) = 0;
+	virtual void deallocate(T* p, std::size_t sz) = 0;
+
+	virtual ~IAllocator() {}
+};
+
+
 template<typename T>
 class vector
 {
