@@ -56,12 +56,14 @@ public:
 // 객체 어답터
 class ObjectAdapter : public Shape
 {
-	TextView* tview;
+	TextView* tview; // 핵심 : 이미 생성되어 있는 객체를 가리키는 포인터(참조)
 public:
 	ObjectAdapter(TextView* tv) : tview(tv) {}
 
-
+	void draw() override {	tview->show();	}
 };
+
+
 
 
 
@@ -79,6 +81,14 @@ int main()
 	// #2. 위에 만든 "Text" 를 사용해서 "tv 를 v에 넣을수" 있을까 ?
 	// => 할수 없다!!
 	// => Text 는 "클래스의 인터페이스를 변경하는 클래스 어답터" 이다
+
+
+	// #3. 객체 어답터 사용하기
+//	v.push_back(&tv); // error. 그냥은 넣을수 없지만
+
+	v.push_back(new ObjectAdapter(&tv)); // Adapter 를 사용하면 넣을수 있다.
+		
+	v[0]->draw();
 }
 
 
