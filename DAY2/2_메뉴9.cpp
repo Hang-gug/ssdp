@@ -40,6 +40,13 @@ class PopupMenu : public BaseMenu
 public:
 	PopupMenu(const std::string& title) : BaseMenu(title) {}
 
+	~PopupMenu()
+	{
+		for (auto m : v)
+			delete v;
+	}
+
+
 
 	void add(BaseMenu* m) { v.push_back(m); }
 
@@ -101,5 +108,11 @@ int main()
 
 	root->command();
 
+
+	// C++ 은 new 로 만든 객체는 delete 해야 합니다.
+	// 해결책 #1. 스마트 포인터 사용 - std::shared_ptr
+	// 해결책 #2. 최상위 메뉴만 제거
+
+	delete root;
 }
 
