@@ -47,7 +47,6 @@ public:
 };
 class Border : public Decorator
 {
-	IDraw* original;
 public:
 	Border(IDraw* ps) : Decorator(ps) {}
 
