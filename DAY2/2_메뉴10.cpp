@@ -104,6 +104,23 @@ public:
 			f();	// f 는 std::function 이므로 () 로 호출.
 	}
 };
+//---------------------------
+void f1()
+{
+	std::cout << "RED 핸들러 \n";
+	_getch();
+}
+
+void f2(int id)
+{
+	std::cout << "GREEN 또는 BLUE 핸들러\n";
+	std::cout << "메뉴 ID : " << id << '\n';
+
+	_getch();
+}
+
+void f3() { std::cout << "f3\n"; }
+
 
 
 int main()
@@ -115,9 +132,9 @@ int main()
 	root->add(pm1);
 	root->add(pm2);
 
-	pm1->add(new MenuItem("RED", 11));
-	pm1->add(new MenuItem("GREEN", 12));
-	pm1->add(new MenuItem("BLUE", 13));
+	pm1->add(new MenuItem("RED", 11, &f1));
+	pm1->add(new MenuItem("GREEN", 12, std::bind(&f2, 12) ));
+	pm1->add(new MenuItem("BLUE", 13,  std::bind(&f2, 13) ));
 
 	pm2->add(new MenuItem("HD", 21));
 	pm2->add(new MenuItem("FHD", 22));
