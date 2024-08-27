@@ -24,7 +24,6 @@ class PopupMenu
 	std::string title;
 	std::vector<MenuItem*> v;
 public:
-
 	PopupMenu(const std::string& title) : title(title) {}
 
 	void add(MenuItem* m) { v.push_back(m); }
@@ -32,9 +31,27 @@ public:
 	// main 의 주석을 참고해서 아래 코드를 생각해 보세요
 	void command()
 	{
+		auto sz = v.size();
+
+		for (int i = 0; i < sz; i++)
+		{
+			std::cout << i + 1 << ". " << v[i]->get_title() << '\n';
+		}
+		std::cout << sz + 1 << ". 종료\n";
+
+		std::cout << "메뉴를 선택하세요 >> ";
+
+		int cmd;
+		std::cin >> cmd;
+
+		v[cmd - 1]->command(); // 메뉴 선택시 MenuItem 의 command() 호출
+
+
 
 	}
 };
+
+
 
 int main()
 {
