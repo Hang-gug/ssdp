@@ -122,6 +122,23 @@ int main()
 			command->execute();
 			cmd_stack.push(command);
 		}
+
+		else if (cmd == 0)
+		{
+			if (cmd_stack.empty() == false)
+			{
+				command = cmd_stack.top();
+				cmd_stack.pop();
+
+				if (command->can_undo())
+				{
+					command->undo();
+				}
+
+				delete command; // redo 하려면 여기서 delete 하지 말고
+								// redo_stack.push(command) 하면 됩니다.
+			}
+		}
 	}
 }
 
