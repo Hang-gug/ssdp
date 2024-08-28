@@ -15,7 +15,12 @@ class Cursor
 private:
 	Cursor() {}
 
-	// 규칙 #2.
+	// 규칙 #2. 컴파일러가 자동생성하는 복사 생성자도 
+	//			사용할수 없게 해야 합니다
+	Cursor(const Cursor&) = delete; // 복사생성자를 만들지 말라고 지시하는것
+
+	Cursor& operator=(const Cursor&) = delete;
+									// 복사를 삭제하면 대입도 삭제하는것이 관례
 
 
 
@@ -36,6 +41,9 @@ int main()
 
 	std::cout << &c1 << std::endl;
 	std::cout << &c2 << std::endl;
+
+	Cursor c3 = c1; // 이렇게 생성하는 것도 막아야 합니다.
+					// "복사 생성자"
 
 //	Cursor c1, c2; // error
 }
