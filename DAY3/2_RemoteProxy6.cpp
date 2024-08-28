@@ -5,7 +5,6 @@
 int main()
 {
 	ICalc* calc1 = load_proxy();
-
 	calc1->AddRef(); // 규칙 1. 최초에 proxy 를 얻으면 참조 계수 증가
 
 	ICalc* calc2 = calc1;
@@ -22,6 +21,13 @@ int main()
 	
 }
 
+// 위 규칙이 어려운 것은 아닙니다. 그런데...직접 코딩을 작성하면 
+
+// 1. 실수할 가능성이 있습니다.
+
+// 2. 지루한 반복 작업 입니다.
+
+// 해결책 : smart proxy 패턴을 적용!!! - 다음 소스에서
 
 
 
