@@ -17,9 +17,15 @@
 //		   => "현재 문맥에서 실행가능한지도 조사도 가능"
 //			   클립보드에 데이타가 없으면 "붙여넣기"는 안됨
 
+// 다양한 명령이 있을수 있으므로 인터페이스 부터
+struct ICommand
+{
+	virtual void execute() = 0;
+	virtual void undo() = 0;
+	virtual ~ICommand() {}
+};
 
-
-class BrightCommand
+class BrightCommand : public ICommand
 {
 	Monitor& m;
 	int value;
