@@ -75,7 +75,7 @@ public:
 };
 
 // 명령의 집합인 Macro 를 만들어 봅시다.
-class Macro
+class Macro : public ICommand // composite!!!
 {
 	std::vector<ICommand*> v;
 public:
@@ -93,16 +93,17 @@ int main()
 	std::vector<Shape*> v;
 
 
-	Macro* m1 = new Macro();
+	Macro* m1 = new Macro;
 	m1->add(new AddCommand<Rect>(v));
 	m1->add(new AddCommand<Circle>(v));
 	m1->add(new DrawCommand(v));
 
 	m1->execute();
 
-	Macro* m2 = new Macro();
+	Macro* m2 = new Macro;
 	m2->add(new AddCommand<Rect>(v));
-	m2->add(? );
+	m2->add( m1 );
+	m2->execute();
 
 
 
