@@ -2,10 +2,16 @@
 #include <mutex>
 
 
+// CRTP : Curiously Recurring Template Pattern
+
+// => 기반 클래스 만들때 미래에 만들어질 파생 클래스 이름을 사용하게 하는 기술
+// => 원리는 템플릿 인자로 전달 받는 것
+// => 요즘 아주 유행하는 기술(C++20 의 Range 라이브러리가 이기술 사용)
+
 template<typename T>
 class Singleton
 {
-private:
+protected:
 	Singleton() {}
 
 	Singleton(const Singleton&) = delete;
@@ -24,8 +30,9 @@ public:
 		return *sinstance;
 	}
 };
-T* Singleton::sinstance = nullptr;  // <<== !!
-std::mutex Singleton::mtx;
+
+template<typename T> T* Singleton<T>::sinstance = nullptr;  // <<== !!
+template<typename T> std::mutex Singleton<T>::mtx;
 
 // Mouse 클래스도 위와 같은 힙에 만드는 싱글톤으로 하고 싶다
 class Mouse : public Singleton< Mouse  >
@@ -36,7 +43,7 @@ class Mouse : public Singleton< Mouse  >
 
 int main()
 {
-	Cursor& c1 = Cursor::get_instance();
+	Mouse& c1 = Mouse::get_instance();
 
 }
 
