@@ -22,6 +22,10 @@ public:
 	{
 		if (obj != nullptr) obj->AddRef();
 	}
+
+	// raw pointer 처럼 사용하기 위해서 -> 와 * 연산자 재정의
+	T* operator->() { return obj; }
+	T& operator*() { return *obj; }
 };
 
 int main()
@@ -33,9 +37,11 @@ int main()
 	sp<ICalc> calc1 = load_proxy();  // sp<ICalc> calc1( load_proxy() )
 	sp<ICalc> calc2 = calc1;		 // 복사 생성자 호출
 
-	// sp가 포인터를 대신하려면 아래 처럼 사용가능해야 합니다.
-	int n1 = calc1->Add(10, 20);
+	// sp 객체 calc1 포인터를 대신하려면 아래 처럼 사용가능해야 합니다.
+	int n1 = calc1->Add(10, 20);  // (calc1.operator->())->Add(...)
 	int n2 = (*calc1).Add(10, 20);
+
+	std::cout << n1 << ", " << n2 << std::endl;
 }
 
 
