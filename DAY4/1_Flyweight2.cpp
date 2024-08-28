@@ -14,7 +14,10 @@ class Image
 public:
 	void Draw() { std::cout << "Draw " << image_url << std::endl; }
 
-	static std::map<std::string, Image*> image_map;
+	// C++17 inline static 문법
+	// => static 멤버 데이타를 클래스 외부에 "정의(define)"하지 않아도 됩니다.
+
+	inline static std::map<std::string, Image*> image_map;
 
 	// 자신의 객체를 만드는 static 멤버 함수
 	static Image* Create(const std::string& url)
@@ -30,12 +33,14 @@ public:
 		}
 		else
 		{
-			img = it->second;  // map 은 pair 보관. 
+			img = it->second;  // map 은 pair(first, second) 보관. 
 							   // first 는 key, second 는 value(Image)
 		}
 		return img;
 	}
 };
+
+
 
 int main()
 {
