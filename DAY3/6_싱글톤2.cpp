@@ -12,26 +12,28 @@
 class Cursor
 {
 private:
-	Cursor() {}
+	Cursor() { std::cout << "Cursor()\n"; }
 
 	Cursor(const Cursor&) = delete; 
 	Cursor& operator=(const Cursor&) = delete;
 
 //	Cursor instance; // error
-	static Cursor instance; // ok
+//	static Cursor instance; // ok
 
 public:
 	static Cursor& get_instance()
 	{
-//		static Cursor instance; 
+		static Cursor instance; 
 		return instance;
 	}
 };
-Cursor Cursor::instance; // C++ 에서는 static 멤버 데이타는 외부 정의 필요
+//Cursor Cursor::instance; // C++ 에서는 static 멤버 데이타는 외부 정의 필요
 
 
 int main()
 {
+	std::cout << "main\n";
+
 	Cursor& c1 = Cursor::get_instance();
 }
 
