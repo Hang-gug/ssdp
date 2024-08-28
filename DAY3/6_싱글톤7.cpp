@@ -12,6 +12,8 @@ public:
 
 	// 아래 코드는 get_instance()가 "최초 호출될때 생성자가 호출"됩니다.
 	// 멀티스레드 환경에서 안전할까요 ?
+	// => C++11 부터 안전합니다.
+	// => 복습할때 godbolt.org 에 아래 코드 넣어 보세요
 	static Cursor& get_instance()
 	{
 		static Cursor instance; 
