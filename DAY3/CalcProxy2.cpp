@@ -12,10 +12,14 @@ class Calc : public ICalc
 	std::atomic<int> refcnt = 0; // ++refcnt 가 멀티스레드에 안전
 public:
 
-	void AddRef() { ++refcnt; }
+	void AddRef()  { ++refcnt; }
+
 	void Release() { if (--refcnt == 0) delete this; }
 
 	~Calc() { std::cout << "~Calc\n"; }
+
+
+
 
 
 	Calc() { server = ec_find_server("Calc"); }

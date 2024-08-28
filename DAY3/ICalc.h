@@ -1,12 +1,36 @@
+// ICalc.h 
 #pragma once
 
-// ICalc.h 
-struct ICalc
+// 객체의 수명을 "reference counting" 으로 관리 하는 경우
+// reference couting 함수는 반드시 interface 에서도 선언되어야 합니다.
+
+// #1. 먼저 reference counting 만을 위한 인터페이스 설계
+struct IRefCount
+{	
+	virtual void AddRef() = 0;
+	virtual void Release() = 0;
+
+	virtual ~IRefCount() {}
+};
+
+// #2. 이제 다양한 Proxy 인터페이스 만들때, IRefCount 에서 상속 받으세요
+struct ICalc : public IRefCount
 {
 	virtual int Add(int a, int b) = 0;
 	virtual int Sub(int a, int b) = 0;
 	virtual ~ICalc() {}
 };
+
+// 위소스 저장하고
+// cl CalcProxy.cpp /LD -o CalcProxy.dll   로 빌드하세요
+
+
+
+
+
+
+
+
 
 // 규칙
 // 1. 새로운 Proxy 배포될때 DLL 이름은 동일해야 합니다.
