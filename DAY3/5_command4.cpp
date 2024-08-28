@@ -39,7 +39,16 @@ class AddRectCommand : public ICommand
 public:
 	AddRectCommand(std::vector<Shape*>& v) : v(v) {}
 
-	void execute() { v.push_back(new Rect); }
+	void execute() override { v.push_back(new Rect); }
+	bool can_undo() override { return true; }
+
+	void undo() override
+	{
+		Shape* s = v.back();  // 반환만 제거 안됨.
+		v.pop_back();		  // 제거는 별도의 함수로
+
+		delete s;
+	}
 };
 
 
