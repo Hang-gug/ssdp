@@ -9,11 +9,24 @@
 // proxy
 // => 다양한 이유로 대신할것을 만드는 패턴. 
 
-
+// 생성자/소멸자를 가질수 있는 포인터를 만들어 봅시다.
+template<typename T>
+class sp
+{
+	T* obj;
+public:
+	sp(T* p = nullptr) : obj(p)
+	{
+	}
+	~sp()
+	{
+	}
+};
 
 int main()
 {
-	ICalc* calc1 = load_proxy();
+//	ICalc* calc1 = load_proxy();
+	sp<ICalc> calc1 = load_proxy();
 }
 
 
