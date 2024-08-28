@@ -47,3 +47,9 @@ int main()
 
 }
 
+// github.com/aosp-mirror     접속해서
+//			  ( android open source project, 즉 안드로이드소스코드)
+
+// platform system core 레포지토리 선택후
+
+// libutils/include/utils/singleton.h 찾아 보세요
