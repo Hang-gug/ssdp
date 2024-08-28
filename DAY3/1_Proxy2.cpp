@@ -62,6 +62,7 @@ int main()
 
 // decorator : original 에 접근 가능
 // proxy     : 대신 사용. original 을 사용하지 말고 대신 사용하라는 것.
+//		       original 을 필요할때만 생성
 
 FileStream fs("a.txt"); 
 ZipDecorator zd(&fs);
