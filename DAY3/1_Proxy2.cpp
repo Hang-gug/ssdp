@@ -42,7 +42,15 @@ public:
 
 int main()
 {
-	DNS dns;
+//	DNS dns;		// 이제 사용자에게 이것을 사용하지 말고
+	DNSProxy dns;	// 이것을 사용하게 합니다.
 
 	std::cout << dns.resolve("www.samsung.com") << std::endl;
+	std::cout << dns.resolve("www.naver.com") << std::endl;
 }
+
+// DNSProxy 처럼 기존의 것을 대신하는 것을 만드는 패턴을 
+// "Proxy" 패턴 입니다.
+
+// virtual proxy : 비싼 객체(시간이 걸리는 작업, 메모리 사용량 많은 작업)
+//				   의 생성을 최대한 지연 시키기 위한 proxy
