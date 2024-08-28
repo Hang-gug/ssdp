@@ -8,7 +8,9 @@
 template<typename T, typename C = std::deque<T>> 
 class stack
 {
-	C c;
+//	C* c; // 이렇게 했다면 "object adapter"
+	C c; // 실제 STL 은 이렇게 되어 있습니다. "클래스 adapater" !!
+
 public:
 	inline void push(const T& e) { c.push_back(e); };
 	inline void pop() { c.pop_back(); };
