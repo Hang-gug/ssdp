@@ -42,13 +42,19 @@ int main()
 	std::cout << &c1 << std::endl;
 	std::cout << &c2 << std::endl;
 
-	Cursor c3 = c1; // 이렇게 생성하는 것도 막아야 합니다.
+//	Cursor c3 = c1; // 이렇게 생성하는 것도 막아야 합니다.
 					// "복사 생성자"
 
 //	Cursor c1, c2; // error
 }
 
 
+// 위코드가 "mayer's singleton" 이라는 코드 입니다.
+// 
+// => effective - C++ 책의 저자인 
+// => scott-mayer 가 처음 제안한 코드
+
+// => 현재 C++ 에서 가장 좋다고 평가 받는 코드
 
 
 
