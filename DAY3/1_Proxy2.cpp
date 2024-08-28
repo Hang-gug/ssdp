@@ -54,3 +54,16 @@ int main()
 
 // virtual proxy : 비싼 객체(시간이 걸리는 작업, 메모리 사용량 많은 작업)
 //				   의 생성을 최대한 지연 시키기 위한 proxy
+
+// DNSProxy : DNS 기능 + cache 기능 추가 이므로 "decorator" 아닌 가요 ?
+
+// decorator vs proxy
+// => 모두 "어떤 기능 추가" 의 개념이 있긴 하지만
+
+// decorator : original 에 접근 가능
+// proxy     : 대신 사용. original 을 사용하지 말고 대신 사용하라는 것.
+
+FileStream fs("a.txt"); 
+ZipDecorator zd(&fs);
+
+// fs도 사용가능하고, zd 도 사용가능
