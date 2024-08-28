@@ -2,6 +2,7 @@
 #include <mutex>
 
 
+template<typename T>
 class Singleton
 {
 private:
@@ -10,28 +11,24 @@ private:
 	Singleton(const Singleton&) = delete;
 	Singleton& operator=(const Singleton&) = delete;
 
-	static Singleton* sinstance;
+	static T* sinstance;     // <<== !!
 	static std::mutex mtx;
 public:
-
-	static Singleton& get_instance()
+	static T& get_instance() // <<== !!
 	{
 		std::lock_guard<std::mutex> g(mtx);
 
 		if (sinstance == nullptr)
-			sinstance = new Singleton;
+			sinstance = new T; // <<== !!
 
 		return *sinstance;
 	}
-
-
 };
-Singleton* Singleton::sinstance = nullptr;
+T* Singleton::sinstance = nullptr;  // <<== !!
 std::mutex Singleton::mtx;
 
-
 // Mouse 클래스도 위와 같은 힙에 만드는 싱글톤으로 하고 싶다
-class Mouse : public Singleton
+class Mouse : public Singleton< Mouse  >
 {
 
 };
