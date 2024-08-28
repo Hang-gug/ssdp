@@ -15,18 +15,14 @@ class sp
 {
 	T* obj;
 public:
-	sp(T* p = nullptr) : obj(p)
-	{
-	}
-	~sp()
-	{
-	}
+	sp(T* p = nullptr) : obj(p) { if (obj != nullptr) obj->AddRef(); }
+	~sp()						{ if (obj != nullptr) obj->Release(); }
 };
 
 int main()
 {
 //	ICalc* calc1 = load_proxy();
-	sp<ICalc> calc1 = load_proxy();
+	sp<ICalc> calc1 = load_proxy();  // sp<ICalc> calc1( load_proxy() )
 }
 
 
