@@ -34,3 +34,7 @@
 // 사용자 =========== TCPServer ====================> Socket, IPAddress....
 //									// 의도 : 복잡한 절차의 단순화
 //									// "facade"
+
+// 사용자 ========== BrightCommand =================> m.set_brightness(80);
+//									// 의도 : "undo 등의 기능을 추가하기 위한"
+//									// command 패턴
