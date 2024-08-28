@@ -9,7 +9,6 @@ struct IRefCount
 {	
 	virtual void AddRef() = 0;
 	virtual void Release() = 0;
-
 	virtual ~IRefCount() {}
 };
 
@@ -22,7 +21,8 @@ struct ICalc : public IRefCount
 };
 
 // 위소스 저장하고
-// cl CalcProxy.cpp /LD -o CalcProxy.dll   로 빌드하세요
+// cl CalcProxy2.cpp /LD 로 빌드하고
+// DLL 이름을 "CalcProxy.dll"로 변경하세요
 
 
 
