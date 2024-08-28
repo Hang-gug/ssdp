@@ -8,16 +8,8 @@
 
 #include "ICalc.h"
 
-ICalc* load_proxy()
-{
-	void* addr = ec_load_module("CalcProxy.dll"); 
 
-	using F = ICalc*(*)(); // 함수 포인터 타입
 
-	F f = (F)ec_get_function_address(addr, "create");
-
-	return f();
-}
 int main()
 {
 	ICalc* calc = load_proxy();
