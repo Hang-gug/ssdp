@@ -72,6 +72,10 @@ int main()
 	g.Restore(token);
 }
 
+// undo 를 구현할수 있는 2가지 방법
+
+// memento : 객체 저장에 의한 undo, 객체크기가 큰 경우 메모리 증가
+// command : 동작의 취소에 의한 undo
 
 
 
