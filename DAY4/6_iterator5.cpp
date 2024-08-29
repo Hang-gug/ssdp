@@ -20,29 +20,27 @@ class slist_iterator
 public:
 	slist_iterator(Node<T>* p) : current(p) {}
 
-	// 이제 약속된 함수 구현
-	slist_iterator& operator++() 
+
+	inline slist_iterator& operator++() 
 	{
 		current = current->next;
 		return *this;
 	}
 
-	T& operator*() { return currrent->data; }
+	inline T& operator*() { return currrent->data; }
 };
 
 
-
-// 컨테이너(collection) 에서는 iterator 를 꺼낼수 있어야 합니다.
-template<typename T> class slist : public ICollection<T>
+template<typename T> class slist
 {
 	Node<T>* head = 0;
 public:
 	void push_front(const T& a) { head = new Node<T>(a, head); }
 
 
-	IIterator<T>* iterator() override
+	slist_iterator<T> begin()
 	{
-		return new slist_iterator<T>(head);
+		return slist_iterator<T>(head); // 동적할당이 아닌 임시객체(값)로 반환
 	}
 };
 
@@ -54,14 +52,12 @@ int main()
 	s.push_front(30);
 	s.push_front(40);
 
-	auto it = s.iterator();
+	auto it = s.begin();
 
-	while (it->hasNext())
-	{
-		std::cout << it->next() << std::endl;
-	}
-
-	delete it;
+	std::cout << *it << std::endl; // 40
+	++it;
+		
+	std::cout << *it << std::endl;	// 30
 }
 
 
