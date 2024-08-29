@@ -42,14 +42,15 @@ public:
 class AutoRegister
 {
 public:
-	AutoRegister(int key, Shape* (*f)())
+	AutoRegister( int key, Shape* (*f)() )
 	{
 		ShapeFactory::get_instance().register_shape(key, f);
 	}
 };
 
 // 전역변수 생성자가 호출되는 시점을 생각해 보세요
-AutoRegister ar(1, &Rect::create);
+// => main 함수 실행되기 전에 호출. 
+// AutoRegister ar(1, &Rect::create);
 
 
 
@@ -62,7 +63,23 @@ public:
 	void draw() override { std::cout << "draw Rect" << std::endl; }
 
 	static Shape* create() { return new Rect; }
+
+	// static 멤버 데이타의 특징을 생각해보세요
+	static AutoRegister ar;
 };
+AutoRegister Rect::ar(1, &Rect::create);
+
+
+// new Rect;
+// new Rect;
+// new Rect;
+
+
+
+
+
+
+
 
 
 class Circle : public Shape
