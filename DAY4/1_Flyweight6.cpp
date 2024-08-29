@@ -9,7 +9,6 @@
 void f2(const std::string& s) {} // good 하지만 best 는 아님.!
 
 
-
 void f3(std::string_view  sv) {}
 
 
@@ -26,3 +25,10 @@ int main()
 	f2("hello");
 	f3("hello");
 }
+
+// C++17 이후 함수가 읽기 전용 문자열을 받을때는
+// const std::string& 보다는 std::string_view 가 좋습니다
+
+// RUST       C++
+// str    : std::string_view
+// String : std::string
