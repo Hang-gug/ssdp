@@ -27,7 +27,7 @@ public:
 		return *this;
 	}
 
-	inline T& operator*() { return currrent->data; }
+	inline T& operator*() { return current->data; }
 };
 
 
