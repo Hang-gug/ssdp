@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <vector>
+#include <map>
 #include "Helper.h"
 
 class Shape
@@ -45,21 +46,40 @@ class Circle : public Shape
 {
 public:
 	void draw() override { std::cout << "draw Circle" << std::endl; }
+
+	static Shape* create() { return new Circle; }
 };
 
 
 class ShapeFactory
 {
 	MAKE_SINGLETON(ShapeFactory)
+
+	using CREATOR = Shape*(*)();
+
+	std::map<int, CREATOR> create_map;
 public:
+	void register_shape(int key, CREATOR c)
+	{
+		create_map[key] = c;
+	}
+
 	Shape* create(int type)
 	{
 		Shape* p = nullptr;
-		if (type == 1)	p = new Rect;
-		else if (type == 2)	p = new Circle;
+	
+		auto it = create_map.find(type);
+
+		if (it != create_map.end())
+		{
+			p = it->second(); // 현재 map 의 value 는 생성함수!!
+							  // 따라서, () 로 호출해서 도형생성
+		}
 		return p;
 	}
 };
+
+
 
 
 int main()
@@ -67,6 +87,12 @@ int main()
 	std::vector<Shape*> v;
 
 	ShapeFactory& factory = ShapeFactory::get_instance();
+
+	// 공장을 사용하기 전에. 제품을 먼저 등록해야 합니다.
+	// => 도형 번호와 생성함수 를 등록
+	factory.register_shape(1, &Rect::create);
+	factory.register_shape(2, &Circle::create);
+
 
 	while (1)
 	{
