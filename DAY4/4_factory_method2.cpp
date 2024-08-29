@@ -50,6 +50,8 @@ public:
 	}
 	// 객체를 생성하기 위한 인터페이스를 제공하고, 사용하지만
 	// 어떤 객체를 생성할지는 파생 클래스가 결정한다.
+	// template method  와 동일한 모양이지만
+	// 객체를 생성하기 위해 사용한다는 의미로 "factory method" 라고 합니다.
 	virtual IButton* CreateButton() = 0;
 	virtual IEdit*   CreateEdit() = 0;
 };
@@ -57,25 +59,17 @@ public:
 
 // Style 옵션과 상관없이 항상 Windows 모양의 Dialog
 
-class WinDialog
+class WinDialog : public BaseDialog
 {
 public:
-
+	IButton* CreateButton() override { return new WinButton; }
+	IEdit* CreateEdit()     override { return new WinEdit; }
 };
-
-class OSXDialog
+class OSXDialog : public BaseDialog
 {
 public:
-	void init()
-	{
-		OSXButton* btn = new OSXButton;
-		OSXEdit* edit = new OSXEdit;
-
-		// btn->Move(); edit->Move();
-
-		btn->Draw();
-		edit->Draw();
-	}
+	IButton* CreateButton() override { return new OSXButton; }
+	IEdit* CreateEdit()     override { return new OSXEdit; }
 };
 
 int main(int argc, char** argv)
