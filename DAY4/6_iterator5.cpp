@@ -32,12 +32,12 @@ public:
 	// 포인터와 사용법이 같아야 합니다.
 	// ==, != 연산자를 제공해야 합니다.
 
-	bool operator != (const slist_iterator& s)
+	inline bool operator != (const slist_iterator& s)
 	{
 		return current != s.current;
 	}
 
-	bool operator == (const slist_iterator& s)
+	inline bool operator == (const slist_iterator& s)
 	{
 		return current != s.current;
 	}
