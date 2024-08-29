@@ -50,9 +50,9 @@ public:
 	{
 		Shape* p = nullptr;
 
-		auto it = create_map.find(type);
+		auto it = prototype_map.find(type);
 
-		if (it != create_map.end())
+		if (it != prototype_map.end())
 		{
 			p = it->second->clone();
 		}
