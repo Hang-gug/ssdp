@@ -15,7 +15,7 @@ public:
 int main()
 {
 	Counter c;
-	c.increment();
-	c.increment();
+	c.increment().increment().increment();
+	
 	std::cout << c.cnt << std::endl;
 }
