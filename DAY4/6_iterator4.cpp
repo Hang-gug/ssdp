@@ -13,7 +13,16 @@ struct IIterator
 {
 	virtual bool hasNext() = 0;
 	virtual T& next() = 0;
+
 	virtual ~IIterator() {}
+};
+
+// 모든 컨테이너(컬렉션)가 지켜야 하는 규칙
+template<typename T>
+struct ICollection
+{
+	virtual IIterator<T>* iterator() = 0;
+	virtual ~ICollection() {}
 };
 
 
