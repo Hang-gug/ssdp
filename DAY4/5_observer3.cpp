@@ -65,8 +65,14 @@ public:
 		// 1. hint 만 가지고 update 할수 있다면 즉시 update 하고
 		// 2. 추가 data 가 필요하면 Table 에 접근해서 data 얻는다.
 
-		int* data = subject->get_data();
+//		int* data = subject->get_data(); // error.
+										// subject 는 "Subject*" 타입
 
+		Table* table = static_cast<Table*>(subject);
+
+		int* data = table->get_data();
+
+		// 이제 data 를 사용해서 UI 를 update..!!
 
 
 
