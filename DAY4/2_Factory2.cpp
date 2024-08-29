@@ -19,8 +19,16 @@ public:
 };
 
 // Rect 객체를 만드는 2가지 방법
-// 1. Rect* r1 = new Rect;
-// 2. Rect* r2 = Rect::create();
+// 1. Rect* r1 = new Rect;			// 클래스 이름을 알아야 합니다.
+// 2. Rect* r2 = Rect::create();	// 클래스 이름을 몰라도 함수주소만
+//									// 알면 객체 생성 가능합니다.
+
+// #1. C++ 에서는 "클래스 이름" 을 자료구조에 보관할수 없습니다.
+// v.push_back("Rect"); // 클래스 이름이 아닌 문자열 보관한것. 문자열로는 객체생성안됨
+// v.push_back(Rect);   // 이렇게 하고 싶지만, 안됨.
+
+// #2. 하지만 함수 주소는 자료구조에 보관됩니다.
+// v.push_back(&Rect::create);
 
 
 
