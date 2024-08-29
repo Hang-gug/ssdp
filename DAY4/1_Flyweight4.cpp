@@ -14,14 +14,19 @@ int main()
 	const char* sp = "abcd"; // C++ 은 이렇게만 가능
 
 	*sa = 'x'; // ok
-	*sp = 'x'; // runtime-error. 상수메모리를 변경하려고 하고 있다.
+//	*sp = 'x'; // char* 라면 runtime-error. 상수메모리를 변경하려고 하고 있다.
+				// const char* 라면 compile -time error
 
 
-
+	// #2. Flyweight
 
 	char sa1[] = "abcd";
 	char sa2[] = "abcd";
 
 	const char* sp1[] = "abcd";
 	const char* sp2[] = "abcd";
+
+	// 아래 결과 예측해 보세요. 같은 주소 ? 다른 주소 ?
+	printf("%p, %p\n", sa1, sa2);
+	printf("%p, %p\n", sp1, sp2);
 }
