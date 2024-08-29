@@ -8,6 +8,8 @@ class Shape
 public:
 	virtual void draw() = 0;
 	virtual ~Shape() {}
+
+	virtual Shape* clone() = 0;
 };
 
 class Rect : public Shape
@@ -16,14 +18,9 @@ public:
 	void draw() override { std::cout << "draw Rect" << std::endl; }
 
 	static Shape* create() { return new Rect; }
+
+	Shape* clone() override { return new Rect(*this); }
 };
-
-
-
-
-
-
-
 
 
 
@@ -33,6 +30,8 @@ public:
 	void draw() override { std::cout << "draw Circle" << std::endl; }
 
 	static Shape* create() { return new Circle; }
+
+	Shape* clone() override { return new Circle(*this); }
 };
 
 
@@ -40,13 +39,11 @@ class ShapeFactory
 {
 	MAKE_SINGLETON(ShapeFactory)
 
-		using CREATOR = Shape * (*)();
-
-	std::map<int, CREATOR> create_map;
+	std::map<int, Shape*> prototype_map;
 public:
-	void register_shape(int key, CREATOR c)
+	void register_shape(int key,  Shape* c)
 	{
-		create_map[key] = c;
+		prototype_map[key] = c;
 	}
 
 	Shape* create(int type)
@@ -57,7 +54,7 @@ public:
 
 		if (it != create_map.end())
 		{
-			p = it->second(); 
+			p = it->second->clone();
 		}
 		return p;
 	}
@@ -79,7 +76,7 @@ int main()
 //	factory.register_shape(2, &Circle::create);
 
 	// 공장에 "클래스" 가 아닌 "자주사용하는 객체" 를 등록해 봅시다.
-	Rect* redRect = new Rect; // 빨간색, 두께5, 크기10등 복잡한설정의 도형
+	Rect* redRect  = new Rect; // 빨간색, 두께5, 크기10등 복잡한설정의 도형
 	Rect* blueRect = new Rect;
 
 	Circle* redCircle = new Circle;
