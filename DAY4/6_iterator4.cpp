@@ -25,16 +25,44 @@ struct ICollection
 	virtual ~ICollection() {}
 };
 
+//----------------------------------
+// 싱글리스트의 반복자 코드
+// => 1번째 요소를 가리키는 포인터를 가지고 있다가
+// => 약속된 함수에서 이동할수 있으면 됩니다.
+template<typename T> 
+class slist_iterator : public IIterator<T>
+{
+	Node<T>* current;
+public:
+	slist_iterator(Node<T>* p) : current(p) {}
+
+	// 이제 약속된 함수 구현
+	T& next() override
+	{
+		T& ret = current->data;
+
+		current = current->next;
+
+		return ret;
+	}
+
+	bool hasNext() override { return current != nullptr; }
+};
 
 
 
-
-
-template<typename T> struct slist
+// 컨테이너(collection) 에서는 iterator 를 꺼낼수 있어야 합니다.
+template<typename T> class slist : public ICollection<T>
 {
 	Node<T>* head = 0;
 public:
 	void push_front(const T& a) { head = new Node<T>(a, head); }
+
+
+	IIterator<T>* iterator() override
+	{
+		return new slist_iterator<T>(head);
+	}
 };
 
 int main()
@@ -44,4 +72,11 @@ int main()
 	s.push_front(20);
 	s.push_front(30);
 	s.push_front(40);
+
+	auto it = s.iterator();
+
+	while (it->hasNext())
+	{
+		std::cout << it->next() << std::endl;
+	}
 }
