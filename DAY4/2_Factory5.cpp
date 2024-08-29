@@ -73,8 +73,22 @@ int main()
 	ShapeFactory& factory = ShapeFactory::get_instance();
 
 
-	factory.register_shape(1, &Rect::create);
-	factory.register_shape(2, &Circle::create);
+	// 아래코드는 공장에 "생성함수의 함수포인터"를 등록하는 코드 입니다.
+	// => 결국 의도는 "공장에 클래스" 를 등록하겠다는 것
+//	factory.register_shape(1, &Rect::create);
+//	factory.register_shape(2, &Circle::create);
+
+	// 공장에 "클래스" 가 아닌 "자주사용하는 객체" 를 등록해 봅시다.
+	Rect* redRect = new Rect; // 빨간색, 두께5, 크기10등 복잡한설정의 도형
+	Rect* blueRect = new Rect;
+
+	Circle* redCircle = new Circle;
+
+	factory.register_shape(1, redRect);
+	factory.register_shape(2, blueRect);
+	factory.register_shape(3, redCircle);
+
+
 
 
 	while (1)
