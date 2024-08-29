@@ -23,8 +23,8 @@ int main()
 	char sa1[] = "abcd";
 	char sa2[] = "abcd";
 
-	const char* sp1[] = "abcd";
-	const char* sp2[] = "abcd";
+	const char* sp1 = "abcd";
+	const char* sp2 = "abcd";
 
 	// 아래 결과 예측해 보세요. 같은 주소 ? 다른 주소 ?
 	printf("%p, %p\n", sa1, sa2);
