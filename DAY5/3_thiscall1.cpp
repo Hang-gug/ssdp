@@ -4,7 +4,7 @@
 
 // 핵심 #1. 멤버 함수는 인자로 "this" 가 추가됩니다. "this call" 이라고 합니다.
 
-// 핵심 #2. ? 멤버 함수는 "this"가 추가되지 않습니다.
+// 핵심 #2. static 멤버 함수는 "this"가 추가되지 않습니다. 중요!!
 
 
 class Point
@@ -18,9 +18,16 @@ public:
 		y = b;				//		this->y = b;
 	}						// }
 	
+	static void foo(int a)  // void foo(int a)
+	{
+		x = a;				// this->x = a; 로 변경할수 없습니다 error
+							// 그래서 static 멤버 함수에서는 멤버 데이타 접근안됩니다.
+	}
 };
 int main()
 {
+	Point::foo(10);
+
 	Point p1;
 	Point p2;
 
