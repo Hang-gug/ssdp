@@ -32,9 +32,13 @@ int main()
 
 	// 또는 아래처럼 람다 표현식
 	// => 람다 표현식은 함수 처럼 () 호출 가능. 
-	s.accept([](int& e) { e *= 2; });
+	s.accept( [](int& e) { e *= 2; } );
 
-	s.accept([](int& e) { std::cout << e << ", "; });
+	s.accept( [](int& e) { std::cout << e << ", "; } );
+
+
+	// java
+	//s.forEach(람다표현식)
 }
 
 
