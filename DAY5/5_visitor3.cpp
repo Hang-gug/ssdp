@@ -17,6 +17,23 @@ public:
 	void visit(T& e) { e *= 2; }
 };
 
+template<typename T>
+class ShowVisitor : public IVisitor<T>
+{
+public:
+	void visit(T& e) { std::cout << e << std::endl; }
+};
+
+template<typename T>
+class ResetVisitor : public IVisitor<T>
+{
+public:
+	void visit(T& e) { e = 0; }
+};
+
+
+
+
 // 모든 복합객체(컨테이너)의 인터페이스
 template<typename T> struct IAcceptor
 {
