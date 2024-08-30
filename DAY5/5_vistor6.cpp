@@ -3,6 +3,26 @@
 #include <vector>
 #include <conio.h> 
 
+// list : 모든 요소가 동일타입							선형구조
+// 메뉴 : 모든 요소가 동일타입아님(Popup 또는 MenuItem)	tree구조
+
+class PopupMenu;
+class MenuItem;
+
+struct IMenuVisitor
+{
+//	virtual void visit(BaseMenu* bm) = 0;
+				// => PopupMenu, MenuItem 모두 받을수 있지만
+				// => 같은 구현을 사용하겠다는 의도
+
+	virtual void visit(PopupMenu* pm) = 0;
+	virtual void visit(MenuItem*  mi) = 0;
+
+	virtual ~IMenuVisitor() {}
+};
+
+
+
 
 class BaseMenu
 {
@@ -70,6 +90,28 @@ public:
 
 	}
 
+};
+
+class TitleChangeVisitor : public IMenuVisitor
+{
+	std::string deco_popup;
+	std::string deco_menu;
+public:
+	TitleChangeVisitor(const std::string& s1, const std::string& s2)
+		: deco_popup(s1), deco_menu(s2) {}
+
+	// 결국 아래 함수에서는 "요소 한개" 에 대한 연산의 정의 입니다.
+	void visit(PopupMenu* pm)
+	{
+		auto s = pm->get_title() + deco_popup;
+		pm->set_title(s);	
+	}
+
+	void visit(MenuItem* mi)
+	{
+		auto s = mi->get_title() + deco_menu;
+		mi->set_title(s);
+	}
 };
 
 
