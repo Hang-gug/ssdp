@@ -21,7 +21,7 @@ public:
 	{
 		// 이벤트가 발생했으므로 
 		// 등록된 모든 함수에 통보 한다.
-		for (auto f : notif_map[key]) // notif_map[key]의 결과는 vector
+		for ( auto f : notif_map[key] ) // notif_map[key]의 결과는 vector
 			f(hint);
 	}
 };
@@ -36,8 +36,8 @@ int main()
 	NotificationCenter nc;
 
 	nc.addObserver("LOWBATTERY", &foo);
-	nc.addObserver("LOWBATTERY", &goo);
-	nc.addObserver("DISCONNECT_WIFI", &goo);
+	nc.addObserver("LOWBATTERY",      std::bind(&goo, _1, 11) );
+	nc.addObserver("DISCONNECT_WIFI", std::bind(&goo, _1, 12) );
 
 
 	// 배터리 모듈쪽에서 배터리가 부족해지면
