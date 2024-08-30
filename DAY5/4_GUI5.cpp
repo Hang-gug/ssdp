@@ -41,7 +41,8 @@ public:
 		switch (msg)
 		{
 		case WM_LBUTTONDOWN:
-			self->lbutton_down();
+			//self->lbutton_down();
+			self->handle_lbutton_down(); // "책임의 고리" 패턴 적용
 			break;
 
 		case WM_KEYDOWN:
@@ -51,19 +52,44 @@ public:
 		return 0;
 	}
 
-	virtual void lbutton_down() {}
+	// 아래 코드가 "chain of responsibility" 핵심
+	void handle_lbutton_down()
+	{
+		// #1. 자신이 먼저 처리
+		if (lbutton_down() == true) // 처리된 경우
+			return;					// 종료
+
+		// #2. 처리 되지 않거나, false 반환했다면 부모 윈도우에 전달
+		if (parent != nullptr)
+			parent->handle_lbutton_down();
+	}
+
+
+	virtual bool lbutton_down() { return false; }
 	virtual void key_down() {}
 };
+
+
+
+
 
 class MainWindow : public Window
 {
 public:
-	void lbutton_down() override { std::cout << "MainWindow lbutton_down\n"; }
+	bool lbutton_down() override 
+	{ 
+		std::cout << "MainWindow lbutton_down\n"; 
+		return true;
+	}
 };
 class ImageView : public Window
 {
 public:
-	void lbutton_down() override { std::cout << "ImageView lbutton_down\n"; }
+	bool lbutton_down() override 
+	{
+		std::cout << "ImageView lbutton_down\n"; 
+		return true;
+	}
 };
 int main()
 {
