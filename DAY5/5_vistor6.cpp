@@ -143,7 +143,7 @@ int main()
 
 	TitleChangeVisitor tcv(" >", " *");
 
-	root->accept(&tcv);
+//	root->accept(&tcv);
 
 
 	root->command();
