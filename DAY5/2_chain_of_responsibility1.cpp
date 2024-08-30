@@ -44,6 +44,47 @@ public:
 	}
 };
 
+class Team2 : public Handler
+{
+public:
+	bool HandleRequest(int problem) override
+	{
+		std::cout << "Team2 Start\n";
+
+		if (problem % 2 == 0)
+		{
+			std::cout << "resolved by Team2\n";
+			return true;
+		}
+		return false;
+	}
+};
+
+class Team3 : public Handler
+{
+public:
+	bool HandleRequest(int problem) override
+	{
+		std::cout << "Team3 Start\n";
+
+		if (problem < 10)
+		{
+			std::cout << "resolved by Team3\n";
+			return true;
+		}
+		return false;
+	}
+};
 int main()
 {
+	Team1 t1;
+	Team2 t2;
+	Team3 t3;
+
+	t1.set_next(&t2)->set_next(&t3);
+
+	t1.Handle(7);
+//	t1.Handle(8);
+//	t1.Handle(3);
+//	t1.Handle(13);
 }
