@@ -88,9 +88,12 @@ public:
 	bool lbutton_down() override 
 	{
 		std::cout << "ImageView lbutton_down\n"; 
-		return true;
+//		return true;	// 이벤트 처리를 종료해 달라.
+		return false;	// 이벤트를 부모윈도우에도 전달해 달라.
 	}
 };
+
+
 int main()
 {
 	MainWindow w1;
@@ -105,3 +108,10 @@ int main()
 	ec_process_message();
 }
 
+
+// 대부분의 GUI 라이브러리는 위와 같이 이벤트를 처리 합니다.
+// 그런데, 각 라이브러리가 각각 "다른 이름" 으로 위 기술을 소개 합니다.
+
+// IOS(swift) : Responder Chain
+// WPF(C#)    : Bublling Event
+// MFC(C++)   : Command Routing
