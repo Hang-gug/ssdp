@@ -36,6 +36,8 @@ public:
 	void set_title(const std::string& s) { title = s; }
 
 	virtual void command() = 0;
+
+	virtual void accept(IMenuVisitor* visitor) = 0;
 };
 
 
@@ -44,6 +46,14 @@ class MenuItem : public BaseMenu
 	int id;
 public:
 	MenuItem(const std::string& title, int id) : BaseMenu(title), id(id) {}
+
+
+	void accept(IMenuVisitor* visitor)
+	{
+		visitor->visit(this);
+	}
+
+
 
 	void command() override
 	{
@@ -59,6 +69,41 @@ public:
 	PopupMenu(const std::string& title) : BaseMenu(title) {}
 
 	void add_menu(BaseMenu* p) { v.push_back(p); }
+
+
+	
+	void accept(IMenuVisitor* visitor)
+	{
+		// #1. 방문자에게 자신을 전달
+		visitor->visit(this);
+
+		/*
+		// #2. 하위 메뉴도 방문자에게 전달 하면 안됩니다.
+		// => 자신이 가진 메뉴만 전달되고,
+		// => 그 하위 메뉴는 전달안됩니다.
+		for (auto m : v)
+			visitor->visit(m);					
+		*/
+
+		// #2. 하위 메뉴에도 방문자를 방문시켜야 합니다.
+		for (auto m : v)
+			m->accept(visitor);
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	void command() override
 	{
@@ -143,7 +188,7 @@ int main()
 
 	TitleChangeVisitor tcv(" >", " *");
 
-//	root->accept(&tcv);
+	root->accept(&tcv);
 
 
 	root->command();
