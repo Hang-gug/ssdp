@@ -25,19 +25,50 @@ class Director
 	IBuilder* builder = nullptr;
 public:
 	void set_builder(IBuilder* p) { builder = p; }
+
+	// 아래 코드는 캐릭터 자체를 만드는 공정을 정의 했습니다.
+	// => 그런데, 각 공정을 어떻게 만들지는 달라질수 있습니다.
 	Character construct()
 	{
-		Character c;
-		c = c + Hat("야구모자");
-		c = c + Uniform("파란색티셔츠");
-		c = c + Shoes("운동화");
-		return c;
+		builder->make_hat();
+		builder->make_uniform();
+		builder->make_shoes();
+
+		return builder->get_result();
 	}
+};
+
+class Korean : public IBuilder
+{
+	Character c;
+public:
+	void make_hat()     override { c += "갓\\"; }
+	void make_uniform() override { c += "한복\\"; }
+	void make_shoes()   override { c += "짚신\n"; }
+
+	Character get_result() override { return c; }
+};
+
+class American : public IBuilder
+{
+	Character c;
+public:
+	void make_hat()     override { c += "야구모자\\"; }
+	void make_uniform() override { c += "양복\\"; }
+	void make_shoes()   override { c += "구두\n"; }
+
+	Character get_result() override { return c; }
 };
 int main()
 {
+	Korean k;
+	American a;
+	
 	Director d;
+	d.set_builder(&k); // 국가 선택을 변경할때 마다 "빌더" 를 교체 합니다.
+
 	Character c = d.construct();
 	std::cout << c << std::endl;
 
 }
+
