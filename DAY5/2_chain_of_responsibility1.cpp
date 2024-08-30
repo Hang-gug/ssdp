@@ -8,7 +8,7 @@ struct Handler
 {
 	Handler* next = nullptr;
 
-	Handle* set_next(Handler* n)
+	Handler* set_next(Handler* n)
 	{
 		next = n;
 		return next;
