@@ -2,6 +2,10 @@ class Dialog
 {
 public:
 	void close(int code) {}
+//	void close(this Dialog& self, int code) {} // 위코드와 동일
+											   // this가 암시적 추가가 아닌
+												// 개발자가 명시적 표기
+												// "python 과 동일"
 
 	static void close2(int code) {}
 };
