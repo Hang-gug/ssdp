@@ -91,5 +91,7 @@ int main()
 // 동전이 있을때 "모든 동작" 따로 설계해서. 
 // 교체 가능하게 합니다.
 
+// 복습할때 "VendingMachine" 만들어 보세요. insert_coin(), push_button()
+
 // builder :
 
