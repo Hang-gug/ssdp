@@ -12,10 +12,17 @@ class NotificationCenter
 
 	std::map<std::string, std::vector<HANDLER>> notif_map;
 public:
-
 	void addObserver(const std::string& key, HANDLER h)
 	{
-		notif_map[key] = h;
+		notif_map[key].push_back( h );
+	}
+
+	void postNotificationWithName(const std::string& key, void* hint)
+	{
+		// 이벤트가 발생했으므로 
+		// 등록된 모든 함수에 통보 한다.
+		for (auto f : notif_map[key]) // notif_map[key]의 결과는 vector
+			f(hint);
 	}
 };
 
