@@ -46,12 +46,12 @@ public:
 class MainWindow : public Window
 {
 public:
-	void lbutton_down() { std::cout << "MainWindow lbutton_down\n";	}
+	void lbutton_down() override { std::cout << "MainWindow lbutton_down\n";	}
 };
 class ImageView : public Window
 {
 public:
-	void lbutton_down() { std::cout << "ImageView lbutton_down\n";	}
+	void lbutton_down() override { std::cout << "ImageView lbutton_down\n";	}
 };
 int main()
 {
